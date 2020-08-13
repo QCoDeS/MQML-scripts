@@ -16,6 +16,6 @@ N​:            Number of repetitions​
 
 Values:
 Vgmin = -2 V
-Vgmax = +7 V
+Vgmax = +5 V
 ISD   = 10 nA       [need to be tested and specified]
 j     = 0.5 V/sev  [need to be tested and specified]
