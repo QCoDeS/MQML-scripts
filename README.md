@@ -1,2 +1,2 @@
 # MQML-scripts
-Measurement scripts and code from Lyngby
+Measurement and analysis protocols for the Microsoft Quantum Materials Lyngby lab
