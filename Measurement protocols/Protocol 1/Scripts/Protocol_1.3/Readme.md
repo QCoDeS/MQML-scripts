@@ -1,4 +1,4 @@
-Protocol 1.0
+Protocol 1.3
 VLS and SAG NWs with standard lock-in technique
 <br>
 The code can be used for 1, 2 or 3 devices silmutaneously
@@ -6,6 +6,6 @@ The code can be used for 1, 2 or 3 devices silmutaneously
 This version supports both 4-probe and 2-probe measurements
 <br>
 <br>
-This code tests the stability of the devices under N repetitions
+This is a pinch-off measurement code that adds magnetic field as an extra parameter that can be sequentialy controlled
 <br>
-Source-drain bias voltage, temperature and magnetic field can be added as extra parameters
+Temperature and Source-drain bias voltage can be also added
