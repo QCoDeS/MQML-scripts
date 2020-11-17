@@ -1,2 +1,2 @@
 include versioneer.py
-include versioneercheck/_version.py
+include mqml/_version.py

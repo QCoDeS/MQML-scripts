@@ -1,4 +1,4 @@
-Copyright (c) Farzad Bonabi.
+Copyright (c) Microsoft Corporation and Københavns Universitet.
 
 mqml is available under the `MIT open-source
 license <https://opensource.org/licenses/MIT>`__ :
