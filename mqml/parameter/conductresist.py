@@ -3,21 +3,21 @@ from qcodes.instrument.base import Instrument
 
 G_0 = 7.7480917310e-5 #conductance quantum
 
-# Definitions of functions for differential conductance 
+# Definitions of functions for differential conductance
 # and reristance for 2 and 4 probe measurements
 
 class ConductResist(Instrument):
     '''
     This class holds the paramaters for conductance or resistance
     and methods to calculate those based on the parameters generated from lock-ins.
-        
+
     Args:
         name: The name of a paramater in this class
         lockin_param1: .X value of a lock-in amplifier
         lockin_param2: .X or .amplitude() value of a lock-in amplifier depending on
                         the target parameter
     '''
-    def __init__(self, name: str, lockin_param1: float, lockin_param2: float) -> None:
+    def __init__(self, name: str, lockin_param1: Parameter, lockin_param2: Parameter) -> None:
         super().__init__(name)
         self.add_parameter("GIamp",
                             label="Current Amplification",
@@ -56,7 +56,7 @@ class ConductResist(Instrument):
                             unit='Ohm',
                             get_cmd=lambda: self.ohms_law(lockin_param1, lockin_param2)
                             )
-        
+
     def desoverh_fpm(self, lockin_param1: Parameter, lockin_param2: Parameter) -> float:
         try:
             return (lockin_param1/self.GIamp())/(lockin_param2/self.GVamp())/G_0
@@ -72,7 +72,7 @@ class ConductResist(Instrument):
             return (lockin_param1/self.GIamp())/(lockin_param2/self.ACdiv())/G_0
         except TypeError as typerror:
             print('Amplification and/or voltaga divisions are not set. Set them and try again.')
-            raise typerror            
+            raise typerror
 
     def ohms_law(self, lockin_param1: Parameter, lockin_param2: Parameter) -> float:
         try:
