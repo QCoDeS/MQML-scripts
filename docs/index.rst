@@ -12,7 +12,6 @@ Documentation
    :maxdepth: 2
 
    api/index
-   example_notebooks/index
 
 
 Indices and tables
