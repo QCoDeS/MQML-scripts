@@ -33,7 +33,6 @@ REM for all jobs except clean and help.
 REM Note that all folders after the first one are excluded
 REM (see sphinx-apidoc help for more info).
 sphinx-apidoc  -o  _auto  -d 10 ..\mqml
-mkdir api\generated\
 
 if "%1" == "htmlfast" goto htmlfast
 
