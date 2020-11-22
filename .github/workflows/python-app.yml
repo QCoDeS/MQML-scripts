@@ -44,6 +44,7 @@ jobs:
     - name: Build The Docs 
       shell: bash  
       run: |
+          source activate qcodes &&
           cd docs &&
           export SPHINXOPTS="-W -v"  &&
           make html
