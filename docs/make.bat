@@ -27,7 +27,7 @@ if errorlevel 9009 (
 	exit /b 1
 )
 
-REM generate api docs
+REM generate api docs for mqml
 REM This is not part of any job since it should be done
 REM for all jobs except clean and help.
 REM Note that all folders after the first one are excluded
