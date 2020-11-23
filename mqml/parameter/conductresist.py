@@ -1,4 +1,4 @@
-from qcodes.instrument import Parameter
+from qcodes.instrument.parameter import Parameter
 from qcodes.instrument.base import Instrument
 
 G_0 = 7.7480917310e-5 #conductance quantum
