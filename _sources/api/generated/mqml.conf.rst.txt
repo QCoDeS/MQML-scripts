@@ -1,0 +1,10 @@
+mqml.conf package
+=================
+
+Module contents
+---------------
+
+.. automodule:: mqml.conf
+   :members:
+   :undoc-members:
+   :show-inheritance:

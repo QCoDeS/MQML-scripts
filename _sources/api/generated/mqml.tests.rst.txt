@@ -1,0 +1,37 @@
+mqml.tests package
+==================
+
+Submodules
+----------
+
+mqml.tests.conftest module
+--------------------------
+
+.. automodule:: mqml.tests.conftest
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+mqml.tests.test\_config module
+------------------------------
+
+.. automodule:: mqml.tests.test_config
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+mqml.tests.test\_installation module
+------------------------------------
+
+.. automodule:: mqml.tests.test_installation
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: mqml.tests
+   :members:
+   :undoc-members:
+   :show-inheritance:

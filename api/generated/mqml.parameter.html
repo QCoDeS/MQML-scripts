@@ -1,0 +1,821 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mqml.parameter package &mdash; mqml 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="mqml.telemetry package" href="mqml.telemetry.html" />
+    <link rel="prev" title="mqml.conf package" href="mqml.conf.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> mqml
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">mqml API Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#mqml-api">MQML API</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="modules.html">mqml</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="mqml.html">mqml package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">mqml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">mqml API Documentation</a> &raquo;</li>
+        
+          <li><a href="modules.html">mqml</a> &raquo;</li>
+        
+          <li><a href="mqml.html">mqml package</a> &raquo;</li>
+        
+      <li>mqml.parameter package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api/generated/mqml.parameter.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="mqml-parameter-package">
+<h1>mqml.parameter package<a class="headerlink" href="#mqml-parameter-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-mqml.parameter.conductresist">
+<span id="mqml-parameter-conductresist-module"></span><h2>mqml.parameter.conductresist module<a class="headerlink" href="#module-mqml.parameter.conductresist" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="mqml.parameter.conductresist.ConductResist">
+<em class="property">class </em><code class="sig-prename descclassname">mqml.parameter.conductresist.</code><code class="sig-name descname">ConductResist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)">str</a></span></em>, <em class="sig-param"><span class="n">lockin_param1</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://qcodes.github.io/Qcodes/api/parameters/parameter.html#qcodes.instrument.parameter.Parameter" title="(in QCoDeS v0.20.1+115.gf2f36fe6bf)">qcodes.instrument.parameter.Parameter</a></span></em>, <em class="sig-param"><span class="n">lockin_param2</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://qcodes.github.io/Qcodes/api/parameters/parameter.html#qcodes.instrument.parameter.Parameter" title="(in QCoDeS v0.20.1+115.gf2f36fe6bf)">qcodes.instrument.parameter.Parameter</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mqml/parameter/conductresist.html#ConductResist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://qcodes.github.io/Qcodes/api/instrument/base.html#qcodes.instrument.base.Instrument" title="(in QCoDeS v0.20.1+115.gf2f36fe6bf)"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.instrument.base.Instrument</span></code></a></p>
+<p>This class holds the paramaters for conductance or resistance
+and methods to calculate those based on the parameters generated from lock-ins.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – The name of a paramater in this class</p></li>
+<li><p><strong>lockin_param1</strong> – .X value of a lock-in amplifier</p></li>
+<li><p><strong>lockin_param2</strong> – .X or .amplitude() value of a lock-in amplifier depending on
+the target parameter</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.desoverh_fpm">
+<code class="sig-name descname">desoverh_fpm</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lockin_param1</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://qcodes.github.io/Qcodes/api/parameters/parameter.html#qcodes.instrument.parameter.Parameter" title="(in QCoDeS v0.20.1+115.gf2f36fe6bf)">qcodes.instrument.parameter.Parameter</a></span></em>, <em class="sig-param"><span class="n">lockin_param2</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://qcodes.github.io/Qcodes/api/parameters/parameter.html#qcodes.instrument.parameter.Parameter" title="(in QCoDeS v0.20.1+115.gf2f36fe6bf)">qcodes.instrument.parameter.Parameter</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#float" title="(in Python v3.6)">float</a><a class="reference internal" href="../../_modules/mqml/parameter/conductresist.html#ConductResist.desoverh_fpm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.desoverh_fpm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.desoverh_tpm">
+<code class="sig-name descname">desoverh_tpm</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lockin_param1</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://qcodes.github.io/Qcodes/api/parameters/parameter.html#qcodes.instrument.parameter.Parameter" title="(in QCoDeS v0.20.1+115.gf2f36fe6bf)">qcodes.instrument.parameter.Parameter</a></span></em>, <em class="sig-param"><span class="n">lockin_param2</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://qcodes.github.io/Qcodes/api/parameters/parameter.html#qcodes.instrument.parameter.Parameter" title="(in QCoDeS v0.20.1+115.gf2f36fe6bf)">qcodes.instrument.parameter.Parameter</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#float" title="(in Python v3.6)">float</a><a class="reference internal" href="../../_modules/mqml/parameter/conductresist.html#ConductResist.desoverh_tpm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.desoverh_tpm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.ohms_law">
+<code class="sig-name descname">ohms_law</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lockin_param1</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://qcodes.github.io/Qcodes/api/parameters/parameter.html#qcodes.instrument.parameter.Parameter" title="(in QCoDeS v0.20.1+115.gf2f36fe6bf)">qcodes.instrument.parameter.Parameter</a></span></em>, <em class="sig-param"><span class="n">lockin_param2</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://qcodes.github.io/Qcodes/api/parameters/parameter.html#qcodes.instrument.parameter.Parameter" title="(in QCoDeS v0.20.1+115.gf2f36fe6bf)">qcodes.instrument.parameter.Parameter</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#float" title="(in Python v3.6)">float</a><a class="reference internal" href="../../_modules/mqml/parameter/conductresist.html#ConductResist.ohms_law"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.ohms_law" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.__del__">
+<code class="sig-name descname">__del__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/constants.html#None" title="(in Python v3.6)">None</a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.__del__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the instrument and remove its instance record.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.__getitem__">
+<code class="sig-name descname">__getitem__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)">str</a></span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>Callable<span class="p">, </span><a class="reference external" href="https://qcodes.github.io/Qcodes/api/parameters/parameter.html#qcodes.instrument.parameter.Parameter" title="(in QCoDeS v0.20.1+115.gf2f36fe6bf)">qcodes.instrument.parameter.Parameter</a><span class="p">]</span><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delegate instrument[‘name’] to parameter or function ‘name’.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.__getstate__">
+<code class="sig-name descname">__getstate__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/constants.html#None" title="(in Python v3.6)">None</a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.__getstate__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prevent pickling instruments, and give a nice error message.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.__repr__">
+<code class="sig-name descname">__repr__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)">str</a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simplified repr giving just the class and name.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.add_function">
+<code class="sig-name descname">add_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)">str</a></span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/constants.html#None" title="(in Python v3.6)">None</a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.add_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bind one <code class="docutils literal notranslate"><span class="pre">Function</span></code> to this instrument.</p>
+<p>Instrument subclasses can call this repeatedly in their <code class="docutils literal notranslate"><span class="pre">__init__</span></code>
+for every real function of the instrument.</p>
+<p>This functionality is meant for simple cases, principally things that
+map to simple commands like <code class="docutils literal notranslate"><span class="pre">*RST</span></code> (reset) or those with just a few
+arguments. It requires a fixed argument count, and positional args
+only. If your case is more complicated, you’re probably better off
+simply making a new method in your <code class="docutils literal notranslate"><span class="pre">Instrument</span></code> subclass definition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – How the Function will be stored within
+<code class="docutils literal notranslate"><span class="pre">instrument.Functions</span></code> and also how you  address it using the
+shortcut methods: <code class="docutils literal notranslate"><span class="pre">instrument.call(func_name,</span> <span class="pre">*args)</span></code> etc.</p></li>
+<li><p><strong>**kwargs</strong> – constructor kwargs for <code class="docutils literal notranslate"><span class="pre">Function</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#KeyError" title="(in Python v3.6)"><strong>KeyError</strong></a> – If this instrument already has a function with this
+    name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.add_parameter">
+<code class="sig-name descname">add_parameter</code><span class="sig-paren">(</span><em class="sig-param">name: str</em>, <em class="sig-param">parameter_class: type = &lt;class 'qcodes.instrument.parameter.Parameter'&gt;</em>, <em class="sig-param">**kwargs: Any</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/constants.html#None" title="(in Python v3.6)">None</a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.add_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bind one Parameter to this instrument.</p>
+<p>Instrument subclasses can call this repeatedly in their <code class="docutils literal notranslate"><span class="pre">__init__</span></code>
+for every real parameter of the instrument.</p>
+<p>In this sense, parameters are the state variables of the instrument,
+anything the user can set and/or get.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – How the parameter will be stored within
+<code class="docutils literal notranslate"><span class="pre">instrument.parameters</span></code> and also how you address it using the
+shortcut methods: <code class="docutils literal notranslate"><span class="pre">instrument.set(param_name,</span> <span class="pre">value)</span></code> etc.</p></li>
+<li><p><strong>parameter_class</strong> – You can construct the parameter
+out of any class. Default <code class="xref py py-class docutils literal notranslate"><span class="pre">parameter.Parameter</span></code>.</p></li>
+<li><p><strong>**kwargs</strong> – Constructor arguments for <code class="docutils literal notranslate"><span class="pre">parameter_class</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#KeyError" title="(in Python v3.6)"><strong>KeyError</strong></a> – If this instrument already has a parameter with this
+    name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.add_submodule">
+<code class="sig-name descname">add_submodule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)">str</a></span></em>, <em class="sig-param"><span class="n">submodule</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>InstrumentBase<span class="p">, </span>ChannelList<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/constants.html#None" title="(in Python v3.6)">None</a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.add_submodule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bind one submodule to this instrument.</p>
+<p>Instrument subclasses can call this repeatedly in their <code class="docutils literal notranslate"><span class="pre">__init__</span></code>
+method for every submodule of the instrument.</p>
+<p>Submodules can effectively be considered as instruments within
+the main instrument, and should at minimum be
+snapshottable. For example, they can be used to either store
+logical groupings of parameters, which may or may not be
+repeated, or channel lists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – How the submodule will be stored within
+<code class="docutils literal notranslate"><span class="pre">instrument.submodules</span></code> and also how it can be
+addressed.</p></li>
+<li><p><strong>submodule</strong> – The submodule to be stored.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#KeyError" title="(in Python v3.6)"><strong>KeyError</strong></a> – If this instrument already contains a submodule with this
+    name.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#TypeError" title="(in Python v3.6)"><strong>TypeError</strong></a> – If the submodule that we are trying to add is
+    not an instance of an <code class="docutils literal notranslate"><span class="pre">Metadatable</span></code> object.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.ancestors">
+<em class="property">property </em><code class="sig-name descname">ancestors</code><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.ancestors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of instruments, starting from the current instrument
+and following to the parent instrument and the parents parent
+instrument until the root instrument is reached.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.ask">
+<code class="sig-name descname">ask</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)">str</a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.ask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write a command string to the hardware and return a response.</p>
+<p>Subclasses that transform <code class="docutils literal notranslate"><span class="pre">cmd</span></code> should override this method, and in
+it call <code class="docutils literal notranslate"><span class="pre">super().ask(new_cmd)</span></code>. Subclasses that define a new
+hardware communication should instead override <code class="docutils literal notranslate"><span class="pre">ask_raw</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cmd</strong> – The string to send to the instrument.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>response</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#Exception" title="(in Python v3.6)"><strong>Exception</strong></a> – Wraps any underlying exception with extra context,
+    including the command and the instrument.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.ask_raw">
+<code class="sig-name descname">ask_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)">str</a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.ask_raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Low level method to write to the hardware and return a response.</p>
+<p>Subclasses that define a new hardware communication should override
+this method. Subclasses that transform <code class="docutils literal notranslate"><span class="pre">cmd</span></code> should instead
+override <code class="docutils literal notranslate"><span class="pre">ask</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cmd</strong> – The string to send to the instrument.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.call">
+<code class="sig-name descname">call</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)">str</a></span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; Any<a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.call" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shortcut for calling a function from its name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func_name</strong> – The name of a function of this instrument.</p></li>
+<li><p><strong>*args</strong> – any arguments to the function.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The return value of the function.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.close">
+<code class="sig-name descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/constants.html#None" title="(in Python v3.6)">None</a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Irreversibly stop this instrument and free its resources.</p>
+<p>Subclasses should override this if they have other specific
+resources to close.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.close_all">
+<em class="property">classmethod </em><code class="sig-name descname">close_all</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/constants.html#None" title="(in Python v3.6)">None</a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.close_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Try to close all instruments registered in
+<code class="docutils literal notranslate"><span class="pre">_all_instruments</span></code> This is handy for use with atexit to
+ensure that all instruments are closed when a python session is
+closed.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">atexit</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">Instrument</span><span class="o">.</span><span class="n">close_all</span><span class="p">())</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.connect_message">
+<code class="sig-name descname">connect_message</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">idn_param</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)">str</a></span> <span class="o">=</span> <span class="default_value">'IDN'</span></em>, <em class="sig-param"><span class="n">begin_time</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#float" title="(in Python v3.6)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/constants.html#None" title="(in Python v3.6)">None</a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.connect_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print a standard message on initial connection to an instrument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>idn_param</strong> – Name of parameter that returns ID dict.
+Default <code class="docutils literal notranslate"><span class="pre">IDN</span></code>.</p></li>
+<li><p><strong>begin_time</strong> – <code class="docutils literal notranslate"><span class="pre">time.time()</span></code> when init started.
+Default is <code class="docutils literal notranslate"><span class="pre">self._t0</span></code>, set at start of <code class="docutils literal notranslate"><span class="pre">Instrument.__init__</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="mqml.parameter.conductresist.ConductResist.delegate_attr_dicts">
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="mqml.parameter.conductresist.ConductResist.delegate_attr_objects">
+<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.exist">
+<em class="property">static </em><code class="sig-name descname">exist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)">str</a></span></em>, <em class="sig-param"><span class="n">instrument_class</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#type" title="(in Python v3.6)">type</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#bool" title="(in Python v3.6)">bool</a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.exist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if an instrument with a given names exists (i.e. is already
+instantiated).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – Name of the instrument.</p></li>
+<li><p><strong>instrument_class</strong> – The type of instrument you are looking for.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.find_instrument">
+<em class="property">classmethod </em><code class="sig-name descname">find_instrument</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)">str</a></span></em>, <em class="sig-param"><span class="n">instrument_class</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#type" title="(in Python v3.6)">type</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://qcodes.github.io/Qcodes/api/instrument/base.html#qcodes.instrument.base.Instrument" title="(in QCoDeS v0.20.1+115.gf2f36fe6bf)">qcodes.instrument.base.Instrument</a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.find_instrument" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find an existing instrument by name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – Name of the instrument.</p></li>
+<li><p><strong>instrument_class</strong> – The type of instrument you are looking for.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The instrument found.</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#KeyError" title="(in Python v3.6)"><strong>KeyError</strong></a> – If no instrument of that name was found, or if its
+    reference is invalid (dead).</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#TypeError" title="(in Python v3.6)"><strong>TypeError</strong></a> – If a specific class was requested but a different
+    type was found.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.full_name">
+<em class="property">property </em><code class="sig-name descname">full_name</code><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.full_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">param_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)">str</a></span></em><span class="sig-paren">)</span> &#x2192; Any<a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shortcut for getting a parameter from its name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>param_name</strong> – The name of a parameter of this instrument.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The current value of the parameter.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.get_idn">
+<code class="sig-name descname">get_idn</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)">str</a><span class="p">, </span>Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)">str</a><span class="p">]</span><span class="p">]</span><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.get_idn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse a standard VISA <code class="docutils literal notranslate"><span class="pre">*IDN?</span></code> response into an ID dict.</p>
+<p>Even though this is the VISA standard, it applies to various other
+types as well, such as IPInstruments, so it is included here in the
+Instrument base class.</p>
+<p>Override this if your instrument does not support <code class="docutils literal notranslate"><span class="pre">*IDN?</span></code> or
+returns a nonstandard IDN string. This string is supposed to be a
+comma-separated list of vendor, model, serial, and firmware, but
+semicolon and colon are also common separators so we accept them here
+as well.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dict containing vendor, model, serial, and firmware.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.instances">
+<em class="property">classmethod </em><code class="sig-name descname">instances</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span><a class="reference external" href="https://qcodes.github.io/Qcodes/api/instrument/base.html#qcodes.instrument.base.Instrument" title="(in QCoDeS v0.20.1+115.gf2f36fe6bf)">qcodes.instrument.base.Instrument</a><span class="p">]</span><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.instances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all currently defined instances of this instrument class.</p>
+<p>You can use this to get the objects back if you lose track of them,
+and it’s also used by the test system to find objects to test against.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A list of instances.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.is_valid">
+<em class="property">static </em><code class="sig-name descname">is_valid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instr_instance</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://qcodes.github.io/Qcodes/api/instrument/base.html#qcodes.instrument.base.Instrument" title="(in QCoDeS v0.20.1+115.gf2f36fe6bf)">qcodes.instrument.base.Instrument</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#bool" title="(in Python v3.6)">bool</a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.is_valid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if a given instance of an instrument is valid: if an instrument
+has been closed, its instance is not longer a “valid” instrument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>instr_instance</strong> – Instance of an Instrument class or its subclass.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.load_metadata">
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#dict" title="(in Python v3.6)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/constants.html#None" title="(in Python v3.6)">None</a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.load_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load metadata into this classes metadata dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>metadata</strong> – Metadata to load.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the instrument</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.name_parts">
+<em class="property">property </em><code class="sig-name descname">name_parts</code><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.name_parts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="mqml.parameter.conductresist.ConductResist.omit_delegate_attrs">
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.parent">
+<em class="property">property </em><code class="sig-name descname">parent</code><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the parent instrument. By default this is <code class="docutils literal notranslate"><span class="pre">None</span></code>.
+Any SubInstrument should subclass this to return the parent instrument.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.print_readable_snapshot">
+<code class="sig-name descname">print_readable_snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#bool" title="(in Python v3.6)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">max_chars</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#int" title="(in Python v3.6)">int</a></span> <span class="o">=</span> <span class="default_value">80</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/constants.html#None" title="(in Python v3.6)">None</a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.print_readable_snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints a readable version of the snapshot.
+The readable snapshot includes the name, value and unit of each
+parameter.
+A convenience function to quickly get an overview of the
+status of an instrument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>update</strong> – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, update the state by querying the
+instrument. If <code class="docutils literal notranslate"><span class="pre">False</span></code>, just use the latest values in memory.
+This argument gets passed to the snapshot function.</p></li>
+<li><p><strong>max_chars</strong> – the maximum number of characters per line. The
+readable snapshot will be cropped if this value is exceeded.
+Defaults to 80 to be consistent with default terminal width.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.record_instance">
+<em class="property">classmethod </em><code class="sig-name descname">record_instance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instance</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://qcodes.github.io/Qcodes/api/instrument/base.html#qcodes.instrument.base.Instrument" title="(in QCoDeS v0.20.1+115.gf2f36fe6bf)">qcodes.instrument.base.Instrument</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/constants.html#None" title="(in Python v3.6)">None</a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.record_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Record (a weak ref to) an instance in a class’s instance list.</p>
+<p>Also records the instance in list of <em>all</em> instruments, and verifies
+that there are no other instruments with the same name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>instance</strong> – Instance to record.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#KeyError" title="(in Python v3.6)"><strong>KeyError</strong></a> – If another instance with the same name is already present.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.remove_instance">
+<em class="property">classmethod </em><code class="sig-name descname">remove_instance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instance</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://qcodes.github.io/Qcodes/api/instrument/base.html#qcodes.instrument.base.Instrument" title="(in QCoDeS v0.20.1+115.gf2f36fe6bf)">qcodes.instrument.base.Instrument</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/constants.html#None" title="(in Python v3.6)">None</a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.remove_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a particular instance from the record.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>instance</strong> – The instance to remove</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.root_instrument">
+<em class="property">property </em><code class="sig-name descname">root_instrument</code><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.root_instrument" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.set">
+<code class="sig-name descname">set</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">param_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)">str</a></span></em>, <em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/constants.html#None" title="(in Python v3.6)">None</a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shortcut for setting a parameter from its name and new value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>param_name</strong> – The name of a parameter of this instrument.</p></li>
+<li><p><strong>value</strong> – The new value to set.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="mqml.parameter.conductresist.ConductResist.shared_kwargs">
+<code class="sig-name descname">shared_kwargs</code><em class="property"> = ()</em><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.shared_kwargs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.short_name">
+<em class="property">property </em><code class="sig-name descname">short_name</code><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.short_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Short name of the instrument</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.snapshot">
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#bool" title="(in Python v3.6)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorate a snapshot dictionary with metadata.
+DO NOT override this method if you want metadata in the snapshot
+instead, override <a class="reference internal" href="#mqml.parameter.conductresist.ConductResist.snapshot_base" title="mqml.parameter.conductresist.ConductResist.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>update</strong> – Passed to snapshot_base.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Base snapshot.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.snapshot_base">
+<code class="sig-name descname">snapshot_base</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#bool" title="(in Python v3.6)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">params_to_skip_update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)">str</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.snapshot_base" title="Permalink to this definition">¶</a></dt>
+<dd><p>State of the instrument as a JSON-compatible dict (everything that
+the custom JSON encoder class
+<a class="reference external" href="https://qcodes.github.io/Qcodes/api/utils/helpers.html#qcodes.utils.helpers.NumpyJSONEncoder" title="(in QCoDeS v0.20.1+115.gf2f36fe6bf)"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.helpers.NumpyJSONEncoder</span></code></a>
+supports).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>update</strong> – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, update the state by querying the
+instrument. If None update the state if known to be invalid.
+If <code class="docutils literal notranslate"><span class="pre">False</span></code>, just use the latest values in memory and never
+update state.</p></li>
+<li><p><strong>params_to_skip_update</strong> – List of parameter names that will be skipped
+in update even if update is True. This is useful if you have
+parameters that are slow to update but can be updated in a
+different way (as in the qdac). If you want to skip the
+update of certain parameters in all snapshots, use the
+<code class="docutils literal notranslate"><span class="pre">snapshot_get</span></code> attribute of those parameters instead.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>base snapshot</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#dict" title="(in Python v3.6)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.validate_status">
+<code class="sig-name descname">validate_status</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">verbose</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#bool" title="(in Python v3.6)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/constants.html#None" title="(in Python v3.6)">None</a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.validate_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate the values of all gettable parameters</p>
+<p>The validation is done for all parameters that have both a get and
+set method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>verbose</strong> – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, then information about the
+parameters that are being check is printed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/constants.html#None" title="(in Python v3.6)">None</a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write a command string with NO response to the hardware.</p>
+<p>Subclasses that transform <code class="docutils literal notranslate"><span class="pre">cmd</span></code> should override this method, and in
+it call <code class="docutils literal notranslate"><span class="pre">super().write(new_cmd)</span></code>. Subclasses that define a new
+hardware communication should instead override <code class="docutils literal notranslate"><span class="pre">write_raw</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cmd</strong> – The string to send to the instrument.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#Exception" title="(in Python v3.6)"><strong>Exception</strong></a> – Wraps any underlying exception with extra context,
+    including the command and the instrument.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mqml.parameter.conductresist.ConductResist.write_raw">
+<code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.6/library/constants.html#None" title="(in Python v3.6)">None</a><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.write_raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Low level method to write a command string to the hardware.</p>
+<p>Subclasses that define a new hardware communication should override
+this method. Subclasses that transform <code class="docutils literal notranslate"><span class="pre">cmd</span></code> should instead
+override <code class="docutils literal notranslate"><span class="pre">write</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cmd</strong> – The string to send to the instrument.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="mqml.parameter.conductresist.ConductResist.log">
+<code class="sig-name descname">log</code><a class="headerlink" href="#mqml.parameter.conductresist.ConductResist.log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mqml.parameter">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-mqml.parameter" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mqml.telemetry.html" class="btn btn-neutral float-right" title="mqml.telemetry package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mqml.conf.html" class="btn btn-neutral float-left" title="mqml.conf package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
