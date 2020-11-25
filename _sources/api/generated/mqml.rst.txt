@@ -12,17 +12,6 @@ Subpackages
    mqml.telemetry
    mqml.tests
 
-Submodules
-----------
-
-mqml.hello\_world module
-------------------------
-
-.. automodule:: mqml.hello_world
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Module contents
 ---------------
 
