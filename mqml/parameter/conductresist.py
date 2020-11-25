@@ -1,5 +1,7 @@
 from qcodes.instrument.parameter import Parameter
 from qcodes.instrument.base import Instrument
+import numpy as np
+import warnings
 
 G_0 = 7.7480917310e-5 #conductance quantum
 
@@ -32,12 +34,14 @@ class ConductResist(Instrument):
         self.add_parameter("ACdiv",
                             label="AC Division",
                             get_cmd=None,
-                            set_cmd=None)
+                            set_cmd=None,
+                            initial_value=1e-4)
 
         self.add_parameter("DCdiv",
                             label="DC Division",
                             get_cmd=None,
-                            set_cmd=None)
+                            set_cmd=None,
+                            initial_value=1e-2)
 
         self.add_parameter("diff_conductance_fpm",
                             label="dI/dV",
@@ -60,9 +64,9 @@ class ConductResist(Instrument):
     def desoverh_fpm(self, lockin_param1: Parameter, lockin_param2: Parameter) -> float:
         try:
             return (lockin_param1/self.GIamp())/(lockin_param2/self.GVamp())/G_0
-        except ZeroDivisionError as zeroerror:
-            print ('No output because the denominator iz zero')
-            raise zeroerror
+        except ZeroDivisionError:
+            warnings.warn('the denominator iz zero, returning NaN')
+            return np.nan
         except TypeError as typerror:
             print('Amplification and/or voltaga divisions are not set. Set them and try again.')
             raise typerror
@@ -77,9 +81,9 @@ class ConductResist(Instrument):
     def ohms_law(self, lockin_param1: Parameter, lockin_param2: Parameter) -> float:
         try:
             return (lockin_param2/self.GVamp())/(lockin_param1/self.GIamp())
-        except ZeroDivisionError as zeroerror:
-            print ('No output because the denominator iz zero')
-            raise zeroerror
+        except ZeroDivisionError:
+            warnings.warn('the denominator iz zero, returning NaN')
+            return np.nan
         except TypeError as typerror:
             print('Amplification and/or voltaga divisions are not set. Set them and try again.')
             raise typerror
