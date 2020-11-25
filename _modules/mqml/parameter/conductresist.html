@@ -149,6 +149,8 @@
   <h1>Source code for mqml.parameter.conductresist</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="n">Parameter</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument.base</span> <span class="kn">import</span> <span class="n">Instrument</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
 
 <span class="n">G_0</span> <span class="o">=</span> <span class="mf">7.7480917310e-5</span> <span class="c1">#conductance quantum</span>
 
@@ -181,12 +183,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s2">&quot;ACdiv&quot;</span><span class="p">,</span>
                             <span class="n">label</span><span class="o">=</span><span class="s2">&quot;AC Division&quot;</span><span class="p">,</span>
                             <span class="n">get_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                            <span class="n">set_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+                            <span class="n">set_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                            <span class="n">initial_value</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s2">&quot;DCdiv&quot;</span><span class="p">,</span>
                             <span class="n">label</span><span class="o">=</span><span class="s2">&quot;DC Division&quot;</span><span class="p">,</span>
                             <span class="n">get_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                            <span class="n">set_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+                            <span class="n">set_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                            <span class="n">initial_value</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s2">&quot;diff_conductance_fpm&quot;</span><span class="p">,</span>
                             <span class="n">label</span><span class="o">=</span><span class="s2">&quot;dI/dV&quot;</span><span class="p">,</span>
@@ -209,9 +213,9 @@
 <div class="viewcode-block" id="ConductResist.desoverh_fpm"><a class="viewcode-back" href="../../../api/generated/mqml.parameter.html#mqml.parameter.conductresist.ConductResist.desoverh_fpm">[docs]</a>    <span class="k">def</span> <span class="nf">desoverh_fpm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lockin_param1</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">,</span> <span class="n">lockin_param2</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">lockin_param1</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">GIamp</span><span class="p">())</span><span class="o">/</span><span class="p">(</span><span class="n">lockin_param2</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">GVamp</span><span class="p">())</span><span class="o">/</span><span class="n">G_0</span>
-        <span class="k">except</span> <span class="ne">ZeroDivisionError</span> <span class="k">as</span> <span class="n">zeroerror</span><span class="p">:</span>
-            <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;No output because the denominator iz zero&#39;</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="n">zeroerror</span>
+        <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;the denominator iz zero, returning NaN&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
         <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">typerror</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Amplification and/or voltaga divisions are not set. Set them and try again.&#39;</span><span class="p">)</span>
             <span class="k">raise</span> <span class="n">typerror</span></div>
@@ -226,9 +230,9 @@
 <div class="viewcode-block" id="ConductResist.ohms_law"><a class="viewcode-back" href="../../../api/generated/mqml.parameter.html#mqml.parameter.conductresist.ConductResist.ohms_law">[docs]</a>    <span class="k">def</span> <span class="nf">ohms_law</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lockin_param1</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">,</span> <span class="n">lockin_param2</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">lockin_param2</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">GVamp</span><span class="p">())</span><span class="o">/</span><span class="p">(</span><span class="n">lockin_param1</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">GIamp</span><span class="p">())</span>
-        <span class="k">except</span> <span class="ne">ZeroDivisionError</span> <span class="k">as</span> <span class="n">zeroerror</span><span class="p">:</span>
-            <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;No output because the denominator iz zero&#39;</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="n">zeroerror</span>
+        <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;the denominator iz zero, returning NaN&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
         <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">typerror</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Amplification and/or voltaga divisions are not set. Set them and try again.&#39;</span><span class="p">)</span>
             <span class="k">raise</span> <span class="n">typerror</span></div></div>
