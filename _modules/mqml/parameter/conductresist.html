@@ -217,14 +217,14 @@
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;the denominator iz zero, returning NaN&#39;</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
         <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">typerror</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Amplification and/or voltaga divisions are not set. Set them and try again.&#39;</span><span class="p">)</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Amplification and/or voltaga divisions are not set. Set them and try again.&#39;</span><span class="p">)</span>
             <span class="k">raise</span> <span class="n">typerror</span></div>
 
 <div class="viewcode-block" id="ConductResist.desoverh_tpm"><a class="viewcode-back" href="../../../api/generated/mqml.parameter.html#mqml.parameter.conductresist.ConductResist.desoverh_tpm">[docs]</a>    <span class="k">def</span> <span class="nf">desoverh_tpm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lockin_param1</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">,</span> <span class="n">lockin_param2</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">lockin_param1</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">GIamp</span><span class="p">())</span><span class="o">/</span><span class="p">(</span><span class="n">lockin_param2</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">ACdiv</span><span class="p">())</span><span class="o">/</span><span class="n">G_0</span>
         <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">typerror</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Amplification and/or voltaga divisions are not set. Set them and try again.&#39;</span><span class="p">)</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Amplification and/or voltaga divisions are not set. Set them and try again.&#39;</span><span class="p">)</span>
             <span class="k">raise</span> <span class="n">typerror</span></div>
 
 <div class="viewcode-block" id="ConductResist.ohms_law"><a class="viewcode-back" href="../../../api/generated/mqml.parameter.html#mqml.parameter.conductresist.ConductResist.ohms_law">[docs]</a>    <span class="k">def</span> <span class="nf">ohms_law</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lockin_param1</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">,</span> <span class="n">lockin_param2</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
@@ -234,7 +234,7 @@
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;the denominator iz zero, returning NaN&#39;</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
         <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">typerror</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Amplification and/or voltaga divisions are not set. Set them and try again.&#39;</span><span class="p">)</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Amplification and/or voltaga divisions are not set. Set them and try again.&#39;</span><span class="p">)</span>
             <span class="k">raise</span> <span class="n">typerror</span></div></div>
 </pre></div>
 
