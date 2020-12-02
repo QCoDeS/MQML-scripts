@@ -67,16 +67,14 @@ class ConductResist(Instrument):
         except ZeroDivisionError:
             warnings.warn('the denominator iz zero, returning NaN')
             return np.nan
-        except TypeError as typerror:
-            warnings.warn('Amplification and/or voltaga divisions are not set. Set them and try again.')
-            raise typerror
+        except TypeError:
+            raise TypeError('Amplification and/or voltage divisions are not set. Set them and try again.')
 
     def desoverh_tpm(self, lockin_param1: Parameter, lockin_param2: Parameter) -> float:
         try:
             return (lockin_param1/self.GIamp())/(lockin_param2/self.ACdiv())/G_0
-        except TypeError as typerror:
-            warnings.warn('Amplification and/or voltaga divisions are not set. Set them and try again.')
-            raise typerror
+        except TypeError:
+            raise TypeError('Amplification and/or voltage divisions are not set. Set them and try again.')
 
     def ohms_law(self, lockin_param1: Parameter, lockin_param2: Parameter) -> float:
         try:
@@ -84,6 +82,5 @@ class ConductResist(Instrument):
         except ZeroDivisionError:
             warnings.warn('the denominator iz zero, returning NaN')
             return np.nan
-        except TypeError as typerror:
-            warnings.warn('Amplification and/or voltaga divisions are not set. Set them and try again.')
-            raise typerror
+        except TypeError:
+            raise TypeError('Amplification and/or voltage divisions are not set. Set them and try again.')
