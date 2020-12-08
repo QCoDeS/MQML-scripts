@@ -74,7 +74,5 @@ def test_returning_correct_values():
     # ACDiv value is its initial value.
 
     assert test_param.diff_conductance_fpm() == 0.06453201863879687
-
     assert test_param.conductance_tpm() == 6.453201863879687
-
     assert test_param.resistance_fpm() == 200000.0
