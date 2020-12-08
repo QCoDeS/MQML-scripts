@@ -12,6 +12,14 @@ mqml.tests.conftest module
    :undoc-members:
    :show-inheritance:
 
+mqml.tests.test\_conductresist module
+-------------------------------------
+
+.. automodule:: mqml.tests.test_conductresist
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 mqml.tests.test\_config module
 ------------------------------
 
