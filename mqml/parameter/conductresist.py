@@ -1,12 +1,12 @@
+""" Definitions of functions and parameters for differential conductance and reristance for 
+2 and 4 probe measurements"""
+
 from qcodes.instrument.parameter import Parameter
 from qcodes.instrument.base import Instrument
 import numpy as np
 import warnings
 
 G_0 = 7.7480917310e-5 #conductance quantum
-
-# Definitions of functions for differential conductance
-# and reristance for 2 and 4 probe measurements
 
 class ConductResist(Instrument):
     '''
@@ -72,7 +72,7 @@ class ConductResist(Instrument):
 
     def desoverh_tpm(self, lockin_param1: Parameter, lockin_param2: Parameter) -> float:
         try:
-            return (lockin_param1/self.GIamp())/(lockin_param2/self.ACdiv())/G_0
+            return (lockin_param1/self.GIamp())/(lockin_param2*self.ACdiv())/G_0
         except TypeError:
             raise TypeError('Amplification and/or voltage divisions are not set. Set them and try again.')
 
