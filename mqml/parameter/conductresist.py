@@ -1,4 +1,4 @@
-""" Definitions of functions and parameters for differential conductance and reristance for 
+""" Definitions of functions and parameters for differential conductance and reristance for
 2 and 4 probe measurements"""
 
 from qcodes.instrument.parameter import Parameter
@@ -65,7 +65,7 @@ class ConductResist(Instrument):
         try:
             return (lockin_param1/self.GIamp())/(lockin_param2/self.GVamp())/G_0
         except ZeroDivisionError:
-            warnings.warn('the denominator iz zero, returning NaN')
+            warnings.warn('The denominator is zero, returning NaN')
             return np.nan
         except TypeError:
             raise TypeError('Amplification and/or voltage divisions are not set. Set them and try again.')
@@ -74,7 +74,7 @@ class ConductResist(Instrument):
         try:
             return (lockin_param1/self.GIamp())/(lockin_param2*self.ACdiv())/G_0
         except ZeroDivisionError:
-            warnings.warn('the denominator iz zero, returning NaN')
+            warnings.warn('The denominator is zero, returning NaN')
             return np.nan
         except TypeError:
             raise TypeError('Amplification and/or voltage divisions are not set. Set them and try again.')
@@ -83,7 +83,7 @@ class ConductResist(Instrument):
         try:
             return (lockin_param2/self.GVamp())/(lockin_param1/self.GIamp())
         except ZeroDivisionError:
-            warnings.warn('the denominator iz zero, returning NaN')
+            warnings.warn('The denominator is zero, returning NaN')
             return np.nan
         except TypeError:
             raise TypeError('Amplification and/or voltage divisions are not set. Set them and try again.')
