@@ -147,21 +147,22 @@
            <div itemprop="articleBody">
             
   <h1>Source code for mqml.tests.test_conductresist</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">pytest</span>
-
+<span></span><span class="sd">&quot;&quot;&quot;The test file for conductresist.py&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
 <span class="kn">from</span> <span class="nn">mqml.parameter.conductresist</span> <span class="kn">import</span> <span class="n">ConductResist</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument.base</span> <span class="kn">import</span> <span class="n">Instrument</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
 
 <div class="viewcode-block" id="close_all_instruments"><a class="viewcode-back" href="../../../api/generated/mqml.tests.html#mqml.tests.test_conductresist.close_all_instruments">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">autouse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">close_all_instruments</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Makes sure that after startup and teardown all instruments are closed&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Makes sure that after startup and teardown, all instruments are closed&quot;&quot;&quot;</span>
     <span class="n">Instrument</span><span class="o">.</span><span class="n">close_all</span><span class="p">()</span>
     <span class="k">yield</span>
     <span class="n">Instrument</span><span class="o">.</span><span class="n">close_all</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="test_get_static_parameters"><a class="viewcode-back" href="../../../api/generated/mqml.tests.html#mqml.tests.test_conductresist.test_get_static_parameters">[docs]</a><span class="k">def</span> <span class="nf">test_get_static_parameters</span><span class="p">():</span>
-    <span class="s2">&quot;This tests the initial values of static parameters in the class&quot;</span>
+<div class="viewcode-block" id="test_get_initial_values"><a class="viewcode-back" href="../../../api/generated/mqml.tests.html#mqml.tests.test_conductresist.test_get_initial_values">[docs]</a><span class="k">def</span> <span class="nf">test_get_initial_values</span><span class="p">():</span>
+    <span class="s2">&quot;This tests the initial values of uncalculated parameters in the class&quot;</span>
     <span class="n">lockin_param1</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">lockin_param2</span> <span class="o">=</span> <span class="mi">2</span>
     <span class="n">test_param</span> <span class="o">=</span> <span class="n">ConductResist</span><span class="p">(</span><span class="s1">&#39;test_param&#39;</span><span class="p">,</span> <span class="n">lockin_param1</span><span class="o">=</span><span class="n">lockin_param1</span><span class="p">,</span> <span class="n">lockin_param2</span><span class="o">=</span><span class="n">lockin_param2</span><span class="p">)</span>
@@ -177,20 +178,17 @@
     <span class="n">lockin_param2</span> <span class="o">=</span> <span class="mi">2</span>
     <span class="n">test_param</span> <span class="o">=</span> <span class="n">ConductResist</span><span class="p">(</span><span class="s1">&#39;test_param&#39;</span><span class="p">,</span> <span class="n">lockin_param1</span><span class="o">=</span><span class="n">lockin_param1</span><span class="p">,</span> <span class="n">lockin_param2</span><span class="o">=</span><span class="n">lockin_param2</span><span class="p">)</span>
 
-    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;(</span><span class="se">\&#39;</span><span class="s2">Amplification and/or voltage divisions are not set. Set &quot;</span>\
+                            <span class="s2">&quot;them and try again.</span><span class="se">\&#39;</span><span class="s2">, </span><span class="se">\&#39;</span><span class="s2">getting test_param_diff_conductance_fpm</span><span class="se">\&#39;</span><span class="s2">)&quot;</span><span class="p">):</span>
         <span class="n">test_param</span><span class="o">.</span><span class="n">diff_conductance_fpm</span><span class="p">()</span>
-    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;(</span><span class="se">\&#39;</span><span class="s2">Amplification and/or voltage divisions are not set. Set them and try again.</span><span class="se">\&#39;</span><span class="s2">, </span><span class="se">\&#39;</span><span class="s2">getting &quot;</span>\
-                            <span class="s2">&quot;test_param_diff_conductance_fpm</span><span class="se">\&#39;</span><span class="s2">)&quot;</span>
 
-    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;(</span><span class="se">\&#39;</span><span class="s2">Amplification and/or voltage divisions are not set. Set &quot;</span>\
+                            <span class="s2">&quot;them and try again.</span><span class="se">\&#39;</span><span class="s2">, </span><span class="se">\&#39;</span><span class="s2">getting test_param_conductance_tpm</span><span class="se">\&#39;</span><span class="s2">)&quot;</span><span class="p">):</span>
         <span class="n">test_param</span><span class="o">.</span><span class="n">conductance_tpm</span><span class="p">()</span>
-    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;(</span><span class="se">\&#39;</span><span class="s2">Amplification and/or voltage divisions are not set. Set them and try again.</span><span class="se">\&#39;</span><span class="s2">, </span><span class="se">\&#39;</span><span class="s2">getting &quot;</span>\
-                            <span class="s2">&quot;test_param_conductance_tpm</span><span class="se">\&#39;</span><span class="s2">)&quot;</span>
 
-    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="n">test_param</span><span class="o">.</span><span class="n">resistance_fpm</span><span class="p">()</span>
-    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;(</span><span class="se">\&#39;</span><span class="s2">Amplification and/or voltage divisions are not set. Set them and try again.</span><span class="se">\&#39;</span><span class="s2">, </span><span class="se">\&#39;</span><span class="s2">getting &quot;</span>\
-                            <span class="s2">&quot;test_param_resistance_fpm</span><span class="se">\&#39;</span><span class="s2">)&quot;</span></div>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;(</span><span class="se">\&#39;</span><span class="s2">Amplification and/or voltage divisions are not set. Set &quot;</span>\
+                            <span class="s2">&quot;them and try again.</span><span class="se">\&#39;</span><span class="s2">, </span><span class="se">\&#39;</span><span class="s2">getting test_param_resistance_fpm</span><span class="se">\&#39;</span><span class="s2">)&quot;</span><span class="p">):</span>
+        <span class="n">test_param</span><span class="o">.</span><span class="n">resistance_fpm</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="test_warnings"><a class="viewcode-back" href="../../../api/generated/mqml.tests.html#mqml.tests.test_conductresist.test_warnings">[docs]</a><span class="k">def</span> <span class="nf">test_warnings</span><span class="p">():</span>
     <span class="s2">&quot;This tests warnings if zero divisions occur&quot;</span>
@@ -199,10 +197,10 @@
     <span class="n">test_param</span> <span class="o">=</span> <span class="n">ConductResist</span><span class="p">(</span><span class="s1">&#39;test_param&#39;</span><span class="p">,</span> <span class="n">lockin_param1</span><span class="o">=</span><span class="n">lockin_param1</span><span class="p">,</span> <span class="n">lockin_param2</span><span class="o">=</span><span class="n">lockin_param2</span><span class="p">)</span>
     <span class="n">test_param</span><span class="o">.</span><span class="n">GIamp</span><span class="p">(</span><span class="mf">1e7</span><span class="p">)</span>
     <span class="n">test_param</span><span class="o">.</span><span class="n">GVamp</span><span class="p">(</span><span class="mf">100.0</span><span class="p">)</span>
-    <span class="n">nan</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-    <span class="k">assert</span> <span class="n">test_param</span><span class="o">.</span><span class="n">diff_conductance_fpm</span><span class="p">()</span> <span class="ow">is</span> <span class="n">nan</span>
-    <span class="k">assert</span> <span class="n">test_param</span><span class="o">.</span><span class="n">conductance_tpm</span><span class="p">()</span> <span class="ow">is</span> <span class="n">nan</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">warns</span><span class="p">(</span><span class="ne">UserWarning</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s1">&#39;The denominator is zero, returning NaN&#39;</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">test_param</span><span class="o">.</span><span class="n">diff_conductance_fpm</span><span class="p">()</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="k">assert</span> <span class="n">test_param</span><span class="o">.</span><span class="n">conductance_tpm</span><span class="p">()</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
     <span class="n">lockin_param1</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">lockin_param2</span> <span class="o">=</span> <span class="mf">1.0</span>
@@ -210,7 +208,8 @@
     <span class="n">test_param2</span><span class="o">.</span><span class="n">GIamp</span><span class="p">(</span><span class="mf">1e7</span><span class="p">)</span>
     <span class="n">test_param2</span><span class="o">.</span><span class="n">GVamp</span><span class="p">(</span><span class="mf">100.0</span><span class="p">)</span>
 
-    <span class="k">assert</span> <span class="n">test_param2</span><span class="o">.</span><span class="n">resistance_fpm</span><span class="p">()</span> <span class="ow">is</span> <span class="n">nan</span></div>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">warns</span><span class="p">(</span><span class="ne">UserWarning</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s1">&#39;The denominator is zero, returning NaN&#39;</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">test_param2</span><span class="o">.</span><span class="n">resistance_fpm</span><span class="p">()</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span></div>
 
 <div class="viewcode-block" id="test_returning_correct_values"><a class="viewcode-back" href="../../../api/generated/mqml.tests.html#mqml.tests.test_conductresist.test_returning_correct_values">[docs]</a><span class="k">def</span> <span class="nf">test_returning_correct_values</span><span class="p">():</span>
     <span class="s2">&quot;This tests the returned values of the class for calculated parameters&quot;</span>
@@ -221,7 +220,6 @@
     <span class="n">test_param</span><span class="o">.</span><span class="n">GVamp</span><span class="p">(</span><span class="mf">100.0</span><span class="p">)</span>
 
     <span class="c1"># ACDiv value is its initial value.</span>
-
     <span class="k">assert</span> <span class="n">test_param</span><span class="o">.</span><span class="n">diff_conductance_fpm</span><span class="p">()</span> <span class="o">==</span> <span class="mf">0.06453201863879687</span>
     <span class="k">assert</span> <span class="n">test_param</span><span class="o">.</span><span class="n">conductance_tpm</span><span class="p">()</span> <span class="o">==</span> <span class="mf">6.453201863879687</span>
     <span class="k">assert</span> <span class="n">test_param</span><span class="o">.</span><span class="n">resistance_fpm</span><span class="p">()</span> <span class="o">==</span> <span class="mf">200000.0</span></div>

@@ -147,7 +147,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for mqml.parameter.conductresist</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot; Definitions of functions and parameters for differential conductance and reristance for </span>
+<span></span><span class="sd">&quot;&quot;&quot; Definitions of functions and parameters for differential conductance and reristance for</span>
 <span class="sd">2 and 4 probe measurements&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="n">Parameter</span>
@@ -214,7 +214,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">lockin_param1</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">GIamp</span><span class="p">())</span><span class="o">/</span><span class="p">(</span><span class="n">lockin_param2</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">GVamp</span><span class="p">())</span><span class="o">/</span><span class="n">G_0</span>
         <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;the denominator iz zero, returning NaN&#39;</span><span class="p">)</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;The denominator is zero, returning NaN&#39;</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Amplification and/or voltage divisions are not set. Set them and try again.&#39;</span><span class="p">)</span></div>
@@ -223,7 +223,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">lockin_param1</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">GIamp</span><span class="p">())</span><span class="o">/</span><span class="p">(</span><span class="n">lockin_param2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">ACdiv</span><span class="p">())</span><span class="o">/</span><span class="n">G_0</span>
         <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;the denominator iz zero, returning NaN&#39;</span><span class="p">)</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;The denominator is zero, returning NaN&#39;</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Amplification and/or voltage divisions are not set. Set them and try again.&#39;</span><span class="p">)</span></div>
@@ -232,7 +232,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">lockin_param2</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">GVamp</span><span class="p">())</span><span class="o">/</span><span class="p">(</span><span class="n">lockin_param1</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">GIamp</span><span class="p">())</span>
         <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;the denominator iz zero, returning NaN&#39;</span><span class="p">)</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;The denominator is zero, returning NaN&#39;</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Amplification and/or voltage divisions are not set. Set them and try again.&#39;</span><span class="p">)</span></div></div>
