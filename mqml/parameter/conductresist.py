@@ -1,5 +1,5 @@
-""" Definition of functions and parameters for differential conductance and reristance for
-2 and 4 probe measurements"""
+""" Definition of an instrument to calculate differential conductance and reristance for 2 and 4 probe
+measurements using inputs of two lock-in amplifiers"""
 
 from qcodes.instrument.parameter import Parameter
 from qcodes.instrument.base import Instrument
