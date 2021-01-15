@@ -1,6 +1,6 @@
 """The test file for conductresist.py"""
 import pytest
-from mqml.parameter.conductresist import ConductResist
+from mqml.instrument.conductresist import ConductResist
 from qcodes.instrument.base import Instrument
 from qcodes.instrument.parameter import Parameter
 import numpy as np
