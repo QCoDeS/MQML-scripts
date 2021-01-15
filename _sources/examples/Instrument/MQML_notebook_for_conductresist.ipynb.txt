@@ -1,0 +1,543 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# MQML notebook for conductresist"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "In this notebook, we want to show how to setup and use the module conductresist.py. This module has an instrument called ConductResist, which holds and calculates parameters related to differential conductance and resistance."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Basic imports and logging"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {
+    "scrolled": true
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Logging hadn't been started.\n",
+      "Activating auto-logging. Current session state plus future input saved.\n",
+      "Filename       : C:\\Users\\a-fbonabi\\.qcodes\\logs\\command_history.log\n",
+      "Mode           : append\n",
+      "Output logging : True\n",
+      "Raw input log  : False\n",
+      "Timestamping   : True\n",
+      "State          : active\n",
+      "Qcodes Logfile : C:\\Users\\a-fbonabi\\.qcodes\\logs\\210115-44824-qcodes.log\n"
+     ]
+    }
+   ],
+   "source": [
+    "from qcodes.station import Station\n",
+    "from qcodes import initialise_or_create_database_at\n",
+    "from qcodes.logger import start_all_logging\n",
+    "from mqml.instrument.conductresist import ConductResist\n",
+    "from qcodes.instrument.parameter import Parameter\n",
+    "import time\n",
+    "import os\n",
+    "start_all_logging()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Creating qcodes station: "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "For the purpose of this notebook, we create an empty qcodes station object to hold our upcoming ConductResist instruments. In a real experiment, we likely need to load a station yaml file into our created station object, which this yaml file includes all physical instruments needed for the experiment. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "station = Station()\n",
+    "\n",
+    "# If the station.yaml file exists, load the yaml file to the station instead of the above:\n",
+    "# station = Station(config_file='[full path to the station]/station.yaml')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Let's look at our station snapshot:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "{'instruments': {}, 'parameters': {}, 'components': {}, 'config': None}"
+      ]
+     },
+     "execution_count": 3,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "station.snapshot()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Setting up ConductResist"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "ConductResist calculates differential conductance and resistance using voltag and amplitude inputs of two lock-in amplifiers. These inputs are qcodes Parameters. Since we do not have access to lock-in amplifiers in this notebook, we create qcodes Parameters to run the notebook. We need 3 parameters to instantiate this class (we create these parameters with initial values to be able to get these vales when needed):"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "lockin1_X = Parameter('lockin1_X', set_cmd=None, unit='V', initial_value=1)\n",
+    "lockin1_amp = Parameter('lockin1_amp', set_cmd=None, unit='V', initial_value=2)\n",
+    "lockin2_X = Parameter('lockin2_X', set_cmd=None, unit='V', initial_value=3)\n",
+    "\n",
+    "# In a real experiment, we may follow something like:\n",
+    "# lockin1 = station.load_instrument('the name of the first lock-in in the station.yaml, e.g., lockin1')\n",
+    "# lockin2 = station.load_instrument('the name of the second lock-in in the station.yaml, e.g., lockin2')\n",
+    "# lockin1_X = lockin1.X\n",
+    "# lockin1_amp = lockin1.amplitude\n",
+    "# lockin2_X = lockin2.X"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Now, we instantiate ConductResist as below:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "lockin_1_2 = ConductResist('lockin_1_2', lockin1_volt=lockin1_X, lockin1_amp=lockin1_amp, lockin2_volt=lockin2_X)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Then, it is possible to instantiate as many ConductResist instance as you want, if you need more than one lockin pair in your experimental setup.\n",
+    "\n",
+    "In order to retrive conductance and resistance out of our created lockin_1_2, we need to set amplification and division parameters in this created lockin_1_2 instance, otherwise we will get TypeError of not setting them. Note that ACdive and DCdive are defined with initial values of 1e-4 and 1e-2, respectively. Thus, we can leave defining these two parameters, if we want to use their initial values:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "lockin_1_2.GIamp(1e7) # Current amplification\n",
+    "lockin_1_2.GVamp(100) # Voltage amplification"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Now, we can get the values of conductance and resistance:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0.04302134575919792"
+      ]
+     },
+     "execution_count": 7,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "lockin_1_2.diff_conductance_fpm()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "6.453201863879687"
+      ]
+     },
+     "execution_count": 8,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "lockin_1_2.conductance_tpm()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "300000.0"
+      ]
+     },
+     "execution_count": 9,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "lockin_1_2.resistance_fpm()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can add the created lockin_1_2 to our station:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'lockin_1_2'"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "station.add_component(lockin_1_2)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The snapshot of the station should show our lockin_1_2 instrument and its parameters"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "{'instruments': {'lockin_1_2': {'functions': {},\n",
+       "   'submodules': {},\n",
+       "   '__class__': 'mqml.instrument.conductresist.ConductResist',\n",
+       "   'parameters': {'IDN': {'__class__': 'qcodes.instrument.parameter.Parameter',\n",
+       "     'full_name': 'lockin_1_2_IDN',\n",
+       "     'value': {'vendor': None,\n",
+       "      'model': 'lockin_1_2',\n",
+       "      'serial': None,\n",
+       "      'firmware': None},\n",
+       "     'raw_value': {'vendor': None,\n",
+       "      'model': 'lockin_1_2',\n",
+       "      'serial': None,\n",
+       "      'firmware': None},\n",
+       "     'ts': '2021-01-15 13:04:50',\n",
+       "     'inter_delay': 0,\n",
+       "     'unit': '',\n",
+       "     'name': 'IDN',\n",
+       "     'instrument': 'mqml.instrument.conductresist.ConductResist',\n",
+       "     'instrument_name': 'lockin_1_2',\n",
+       "     'vals': '<Anything>',\n",
+       "     'label': 'IDN',\n",
+       "     'post_delay': 0},\n",
+       "    'GIamp': {'__class__': 'qcodes.instrument.parameter.Parameter',\n",
+       "     'full_name': 'lockin_1_2_GIamp',\n",
+       "     'value': 10000000.0,\n",
+       "     'raw_value': 10000000.0,\n",
+       "     'ts': '2021-01-15 13:04:50',\n",
+       "     'inter_delay': 0,\n",
+       "     'unit': '',\n",
+       "     'name': 'GIamp',\n",
+       "     'instrument': 'mqml.instrument.conductresist.ConductResist',\n",
+       "     'instrument_name': 'lockin_1_2',\n",
+       "     'label': 'Current Amplification',\n",
+       "     'post_delay': 0},\n",
+       "    'GVamp': {'__class__': 'qcodes.instrument.parameter.Parameter',\n",
+       "     'full_name': 'lockin_1_2_GVamp',\n",
+       "     'value': 100,\n",
+       "     'raw_value': 100,\n",
+       "     'ts': '2021-01-15 13:04:50',\n",
+       "     'inter_delay': 0,\n",
+       "     'unit': '',\n",
+       "     'name': 'GVamp',\n",
+       "     'instrument': 'mqml.instrument.conductresist.ConductResist',\n",
+       "     'instrument_name': 'lockin_1_2',\n",
+       "     'label': 'Voltage Amplification',\n",
+       "     'post_delay': 0},\n",
+       "    'ACdiv': {'__class__': 'qcodes.instrument.parameter.Parameter',\n",
+       "     'full_name': 'lockin_1_2_ACdiv',\n",
+       "     'value': 0.0001,\n",
+       "     'raw_value': 0.0001,\n",
+       "     'ts': '2021-01-15 13:04:50',\n",
+       "     'inter_delay': 0,\n",
+       "     'unit': '',\n",
+       "     'name': 'ACdiv',\n",
+       "     'instrument': 'mqml.instrument.conductresist.ConductResist',\n",
+       "     'instrument_name': 'lockin_1_2',\n",
+       "     'label': 'AC Division',\n",
+       "     'post_delay': 0},\n",
+       "    'DCdiv': {'__class__': 'qcodes.instrument.parameter.Parameter',\n",
+       "     'full_name': 'lockin_1_2_DCdiv',\n",
+       "     'value': 0.01,\n",
+       "     'raw_value': 0.01,\n",
+       "     'ts': '2021-01-15 13:04:50',\n",
+       "     'inter_delay': 0,\n",
+       "     'unit': '',\n",
+       "     'name': 'DCdiv',\n",
+       "     'instrument': 'mqml.instrument.conductresist.ConductResist',\n",
+       "     'instrument_name': 'lockin_1_2',\n",
+       "     'label': 'DC Division',\n",
+       "     'post_delay': 0},\n",
+       "    'diff_conductance_fpm': {'__class__': 'qcodes.instrument.parameter.Parameter',\n",
+       "     'full_name': 'lockin_1_2_diff_conductance_fpm',\n",
+       "     'value': 0.04302134575919792,\n",
+       "     'raw_value': 0.04302134575919792,\n",
+       "     'ts': '2021-01-15 13:04:50',\n",
+       "     'inter_delay': 0,\n",
+       "     'unit': '2e^2/h',\n",
+       "     'name': 'diff_conductance_fpm',\n",
+       "     'instrument': 'mqml.instrument.conductresist.ConductResist',\n",
+       "     'instrument_name': 'lockin_1_2',\n",
+       "     'label': 'dI/dV',\n",
+       "     'post_delay': 0},\n",
+       "    'conductance_tpm': {'__class__': 'qcodes.instrument.parameter.Parameter',\n",
+       "     'full_name': 'lockin_1_2_conductance_tpm',\n",
+       "     'value': 6.453201863879687,\n",
+       "     'raw_value': 6.453201863879687,\n",
+       "     'ts': '2021-01-15 13:04:50',\n",
+       "     'inter_delay': 0,\n",
+       "     'unit': '2e^2/h',\n",
+       "     'name': 'conductance_tpm',\n",
+       "     'instrument': 'mqml.instrument.conductresist.ConductResist',\n",
+       "     'instrument_name': 'lockin_1_2',\n",
+       "     'label': 'I/V',\n",
+       "     'post_delay': 0},\n",
+       "    'resistance_fpm': {'__class__': 'qcodes.instrument.parameter.Parameter',\n",
+       "     'full_name': 'lockin_1_2_resistance_fpm',\n",
+       "     'value': 300000.0,\n",
+       "     'raw_value': 300000.0,\n",
+       "     'ts': '2021-01-15 13:04:50',\n",
+       "     'inter_delay': 0,\n",
+       "     'unit': 'Ohm',\n",
+       "     'name': 'resistance_fpm',\n",
+       "     'instrument': 'mqml.instrument.conductresist.ConductResist',\n",
+       "     'instrument_name': 'lockin_1_2',\n",
+       "     'label': 'R',\n",
+       "     'post_delay': 0}},\n",
+       "   'name': 'lockin_1_2'}},\n",
+       " 'parameters': {},\n",
+       " 'components': {},\n",
+       " 'config': None}"
+      ]
+     },
+     "execution_count": 11,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "station.snapshot()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Let's examine what happens if the current value of an argument in an instance of ConductResist is zero (in this case, lockin3_amp):"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "lockin3_X = Parameter('lockin1_X', set_cmd=None, unit='V', initial_value=1)\n",
+    "lockin3_amp = Parameter('lockin1_amp', set_cmd=None, unit='V', initial_value=0)\n",
+    "lockin4_X = Parameter('lockin2_X', set_cmd=None, unit='V', initial_value=3)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "lockin_3_4 = ConductResist('lockin_3_4', lockin1_volt=lockin3_X, lockin1_amp=lockin3_amp, lockin2_volt=lockin4_X)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "lockin_3_4.GIamp(1e7) # Current amplification\n",
+    "lockin_3_4.GVamp(100) # Voltage amplification"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0.04302134575919792"
+      ]
+     },
+     "execution_count": 15,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "lockin_3_4.diff_conductance_fpm()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "2021-01-15 13:04:55,776 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ c:\\users\\a-fbonabi\\mqml-scripts\\mqml\\instrument\\conductresist.py:86: UserWarning: The denominator is zero, returning NaN\n",
+      "  warnings.warn('The denominator is zero, returning NaN')\n",
+      "\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "nan"
+      ]
+     },
+     "execution_count": 16,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "lockin_3_4.conductance_tpm()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "300000.0"
+      ]
+     },
+     "execution_count": 17,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "lockin_3_4.resistance_fpm()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We see that lockin_3_4.conductance_tpm() is returning a warning and 'nan'. This is because we have the division by zero case in the calculation of the resistance_fpm as the result of the current value of lockin3_amp is zero. This designe is intentional as we want to warn the user about this occurance and return the output value as numpy nan to not stop the experiment."
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.9"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

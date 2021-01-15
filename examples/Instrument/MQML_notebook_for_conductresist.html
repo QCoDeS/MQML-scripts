@@ -1,0 +1,903 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>MQML notebook for conductresist &mdash; mqml 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Examples of using MQML" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> mqml
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">mqml API Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples of using MQML</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#parameter">Parameter</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">MQML notebook for conductresist</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Basic-imports-and-logging">Basic imports and logging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Creating-qcodes-station:">Creating qcodes station:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Setting-up-ConductResist">Setting up ConductResist</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">mqml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Examples of using MQML</a> &raquo;</li>
+        
+      <li>MQML notebook for conductresist</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/examples/Instrument/MQML_notebook_for_conductresist.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="MQML-notebook-for-conductresist">
+<h1>MQML notebook for conductresist<a class="headerlink" href="#MQML-notebook-for-conductresist" title="Permalink to this headline">¶</a></h1>
+<p>In this notebook, we want to show how to setup and use the module conductresist.py. This module has an instrument called ConductResist, which holds and calculates parameters related to differential conductance and resistance.</p>
+<div class="section" id="Basic-imports-and-logging">
+<h2>Basic imports and logging<a class="headerlink" href="#Basic-imports-and-logging" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">qcodes.station</span> <span class="kn">import</span> <span class="n">Station</span>
+<span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">initialise_or_create_database_at</span>
+<span class="kn">from</span> <span class="nn">qcodes.logger</span> <span class="kn">import</span> <span class="n">start_all_logging</span>
+<span class="kn">from</span> <span class="nn">mqml.instrument.conductresist</span> <span class="kn">import</span> <span class="n">ConductResist</span>
+<span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="n">Parameter</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">start_all_logging</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Logging hadn&#39;t been started.
+Activating auto-logging. Current session state plus future input saved.
+Filename       : /home/runner/.qcodes/logs/command_history.log
+Mode           : append
+Output logging : True
+Raw input log  : False
+Timestamping   : True
+State          : active
+Qcodes Logfile : /home/runner/.qcodes/logs/210115-3980-qcodes.log
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Creating-qcodes-station:">
+<h2>Creating qcodes station:<a class="headerlink" href="#Creating-qcodes-station:" title="Permalink to this headline">¶</a></h2>
+<p>For the purpose of this notebook, we create an empty qcodes station object to hold our upcoming ConductResist instruments. In a real experiment, we likely need to load a station yaml file into our created station object, which this yaml file includes all physical instruments needed for the experiment.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">station</span> <span class="o">=</span> <span class="n">Station</span><span class="p">()</span>
+
+<span class="c1"># If the station.yaml file exists, load the yaml file to the station instead of the above:</span>
+<span class="c1"># station = Station(config_file=&#39;[full path to the station]/station.yaml&#39;)</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s look at our station snapshot:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">station</span><span class="o">.</span><span class="n">snapshot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;instruments&#39;: {}, &#39;parameters&#39;: {}, &#39;components&#39;: {}, &#39;config&#39;: None}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Setting-up-ConductResist">
+<h2>Setting up ConductResist<a class="headerlink" href="#Setting-up-ConductResist" title="Permalink to this headline">¶</a></h2>
+<p>ConductResist calculates differential conductance and resistance using voltag and amplitude inputs of two lock-in amplifiers. These inputs are qcodes Parameters. Since we do not have access to lock-in amplifiers in this notebook, we create qcodes Parameters to run the notebook. We need 3 parameters to instantiate this class (we create these parameters with initial values to be able to get these vales when needed):</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lockin1_X</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;lockin1_X&#39;</span><span class="p">,</span> <span class="n">set_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="n">initial_value</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">lockin1_amp</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;lockin1_amp&#39;</span><span class="p">,</span> <span class="n">set_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="n">initial_value</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">lockin2_X</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;lockin2_X&#39;</span><span class="p">,</span> <span class="n">set_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="n">initial_value</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># In a real experiment, we may follow something like:</span>
+<span class="c1"># lockin1 = station.load_instrument(&#39;the name of the first lock-in in the station.yaml, e.g., lockin1&#39;)</span>
+<span class="c1"># lockin2 = station.load_instrument(&#39;the name of the second lock-in in the station.yaml, e.g., lockin2&#39;)</span>
+<span class="c1"># lockin1_X = lockin1.X</span>
+<span class="c1"># lockin1_amp = lockin1.amplitude</span>
+<span class="c1"># lockin2_X = lockin2.X</span>
+</pre></div>
+</div>
+</div>
+<p>Now, we instantiate ConductResist as below:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lockin_1_2</span> <span class="o">=</span> <span class="n">ConductResist</span><span class="p">(</span><span class="s1">&#39;lockin_1_2&#39;</span><span class="p">,</span> <span class="n">lockin1_volt</span><span class="o">=</span><span class="n">lockin1_X</span><span class="p">,</span> <span class="n">lockin1_amp</span><span class="o">=</span><span class="n">lockin1_amp</span><span class="p">,</span> <span class="n">lockin2_volt</span><span class="o">=</span><span class="n">lockin2_X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Then, it is possible to instantiate as many ConductResist instance as you want, if you need more than one lockin pair in your experimental setup.</p>
+<p>In order to retrive conductance and resistance out of our created lockin_1_2, we need to set amplification and division parameters in this created lockin_1_2 instance, otherwise we will get TypeError of not setting them. Note that ACdive and DCdive are defined with initial values of 1e-4 and 1e-2, respectively. Thus, we can leave defining these two parameters, if we want to use their initial values:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lockin_1_2</span><span class="o">.</span><span class="n">GIamp</span><span class="p">(</span><span class="mf">1e7</span><span class="p">)</span> <span class="c1"># Current amplification</span>
+<span class="n">lockin_1_2</span><span class="o">.</span><span class="n">GVamp</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># Voltage amplification</span>
+</pre></div>
+</div>
+</div>
+<p>Now, we can get the values of conductance and resistance:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lockin_1_2</span><span class="o">.</span><span class="n">diff_conductance_fpm</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.04302134575919792
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lockin_1_2</span><span class="o">.</span><span class="n">conductance_tpm</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+6.453201863879687
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lockin_1_2</span><span class="o">.</span><span class="n">resistance_fpm</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+300000.0
+</pre></div></div>
+</div>
+<p>We can add the created lockin_1_2 to our station:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">station</span><span class="o">.</span><span class="n">add_component</span><span class="p">(</span><span class="n">lockin_1_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;lockin_1_2&#39;
+</pre></div></div>
+</div>
+<p>The snapshot of the station should show our lockin_1_2 instrument and its parameters</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">station</span><span class="o">.</span><span class="n">snapshot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;instruments&#39;: {&#39;lockin_1_2&#39;: {&#39;functions&#39;: {},
+   &#39;submodules&#39;: {},
+   &#39;__class__&#39;: &#39;mqml.instrument.conductresist.ConductResist&#39;,
+   &#39;parameters&#39;: {&#39;IDN&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+     &#39;full_name&#39;: &#39;lockin_1_2_IDN&#39;,
+     &#39;value&#39;: {&#39;vendor&#39;: None,
+      &#39;model&#39;: &#39;lockin_1_2&#39;,
+      &#39;serial&#39;: None,
+      &#39;firmware&#39;: None},
+     &#39;raw_value&#39;: {&#39;vendor&#39;: None,
+      &#39;model&#39;: &#39;lockin_1_2&#39;,
+      &#39;serial&#39;: None,
+      &#39;firmware&#39;: None},
+     &#39;ts&#39;: &#39;2021-01-15 12:09:37&#39;,
+     &#39;instrument&#39;: &#39;mqml.instrument.conductresist.ConductResist&#39;,
+     &#39;instrument_name&#39;: &#39;lockin_1_2&#39;,
+     &#39;label&#39;: &#39;IDN&#39;,
+     &#39;inter_delay&#39;: 0,
+     &#39;name&#39;: &#39;IDN&#39;,
+     &#39;post_delay&#39;: 0,
+     &#39;unit&#39;: &#39;&#39;,
+     &#39;vals&#39;: &#39;&lt;Anything&gt;&#39;},
+    &#39;GIamp&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+     &#39;full_name&#39;: &#39;lockin_1_2_GIamp&#39;,
+     &#39;value&#39;: 10000000.0,
+     &#39;raw_value&#39;: 10000000.0,
+     &#39;ts&#39;: &#39;2021-01-15 12:09:37&#39;,
+     &#39;instrument&#39;: &#39;mqml.instrument.conductresist.ConductResist&#39;,
+     &#39;instrument_name&#39;: &#39;lockin_1_2&#39;,
+     &#39;label&#39;: &#39;Current Amplification&#39;,
+     &#39;inter_delay&#39;: 0,
+     &#39;name&#39;: &#39;GIamp&#39;,
+     &#39;post_delay&#39;: 0,
+     &#39;unit&#39;: &#39;&#39;},
+    &#39;GVamp&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+     &#39;full_name&#39;: &#39;lockin_1_2_GVamp&#39;,
+     &#39;value&#39;: 100,
+     &#39;raw_value&#39;: 100,
+     &#39;ts&#39;: &#39;2021-01-15 12:09:37&#39;,
+     &#39;instrument&#39;: &#39;mqml.instrument.conductresist.ConductResist&#39;,
+     &#39;instrument_name&#39;: &#39;lockin_1_2&#39;,
+     &#39;label&#39;: &#39;Voltage Amplification&#39;,
+     &#39;inter_delay&#39;: 0,
+     &#39;name&#39;: &#39;GVamp&#39;,
+     &#39;post_delay&#39;: 0,
+     &#39;unit&#39;: &#39;&#39;},
+    &#39;ACdiv&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+     &#39;full_name&#39;: &#39;lockin_1_2_ACdiv&#39;,
+     &#39;value&#39;: 0.0001,
+     &#39;raw_value&#39;: 0.0001,
+     &#39;ts&#39;: &#39;2021-01-15 12:09:37&#39;,
+     &#39;instrument&#39;: &#39;mqml.instrument.conductresist.ConductResist&#39;,
+     &#39;instrument_name&#39;: &#39;lockin_1_2&#39;,
+     &#39;label&#39;: &#39;AC Division&#39;,
+     &#39;inter_delay&#39;: 0,
+     &#39;name&#39;: &#39;ACdiv&#39;,
+     &#39;post_delay&#39;: 0,
+     &#39;unit&#39;: &#39;&#39;},
+    &#39;DCdiv&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+     &#39;full_name&#39;: &#39;lockin_1_2_DCdiv&#39;,
+     &#39;value&#39;: 0.01,
+     &#39;raw_value&#39;: 0.01,
+     &#39;ts&#39;: &#39;2021-01-15 12:09:37&#39;,
+     &#39;instrument&#39;: &#39;mqml.instrument.conductresist.ConductResist&#39;,
+     &#39;instrument_name&#39;: &#39;lockin_1_2&#39;,
+     &#39;label&#39;: &#39;DC Division&#39;,
+     &#39;inter_delay&#39;: 0,
+     &#39;name&#39;: &#39;DCdiv&#39;,
+     &#39;post_delay&#39;: 0,
+     &#39;unit&#39;: &#39;&#39;},
+    &#39;diff_conductance_fpm&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+     &#39;full_name&#39;: &#39;lockin_1_2_diff_conductance_fpm&#39;,
+     &#39;value&#39;: 0.04302134575919792,
+     &#39;raw_value&#39;: 0.04302134575919792,
+     &#39;ts&#39;: &#39;2021-01-15 12:09:37&#39;,
+     &#39;instrument&#39;: &#39;mqml.instrument.conductresist.ConductResist&#39;,
+     &#39;instrument_name&#39;: &#39;lockin_1_2&#39;,
+     &#39;label&#39;: &#39;dI/dV&#39;,
+     &#39;inter_delay&#39;: 0,
+     &#39;name&#39;: &#39;diff_conductance_fpm&#39;,
+     &#39;post_delay&#39;: 0,
+     &#39;unit&#39;: &#39;2e^2/h&#39;},
+    &#39;conductance_tpm&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+     &#39;full_name&#39;: &#39;lockin_1_2_conductance_tpm&#39;,
+     &#39;value&#39;: 6.453201863879687,
+     &#39;raw_value&#39;: 6.453201863879687,
+     &#39;ts&#39;: &#39;2021-01-15 12:09:37&#39;,
+     &#39;instrument&#39;: &#39;mqml.instrument.conductresist.ConductResist&#39;,
+     &#39;instrument_name&#39;: &#39;lockin_1_2&#39;,
+     &#39;label&#39;: &#39;I/V&#39;,
+     &#39;inter_delay&#39;: 0,
+     &#39;name&#39;: &#39;conductance_tpm&#39;,
+     &#39;post_delay&#39;: 0,
+     &#39;unit&#39;: &#39;2e^2/h&#39;},
+    &#39;resistance_fpm&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+     &#39;full_name&#39;: &#39;lockin_1_2_resistance_fpm&#39;,
+     &#39;value&#39;: 300000.0,
+     &#39;raw_value&#39;: 300000.0,
+     &#39;ts&#39;: &#39;2021-01-15 12:09:37&#39;,
+     &#39;instrument&#39;: &#39;mqml.instrument.conductresist.ConductResist&#39;,
+     &#39;instrument_name&#39;: &#39;lockin_1_2&#39;,
+     &#39;label&#39;: &#39;R&#39;,
+     &#39;inter_delay&#39;: 0,
+     &#39;name&#39;: &#39;resistance_fpm&#39;,
+     &#39;post_delay&#39;: 0,
+     &#39;unit&#39;: &#39;Ohm&#39;}},
+   &#39;name&#39;: &#39;lockin_1_2&#39;}},
+ &#39;parameters&#39;: {},
+ &#39;components&#39;: {},
+ &#39;config&#39;: None}
+</pre></div></div>
+</div>
+<p>Let’s examine what happens if the current value of an argument in an instance of ConductResist is zero (in this case, lockin3_amp):</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lockin3_X</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;lockin1_X&#39;</span><span class="p">,</span> <span class="n">set_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="n">initial_value</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">lockin3_amp</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;lockin1_amp&#39;</span><span class="p">,</span> <span class="n">set_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="n">initial_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">lockin4_X</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;lockin2_X&#39;</span><span class="p">,</span> <span class="n">set_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="n">initial_value</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lockin_3_4</span> <span class="o">=</span> <span class="n">ConductResist</span><span class="p">(</span><span class="s1">&#39;lockin_3_4&#39;</span><span class="p">,</span> <span class="n">lockin1_volt</span><span class="o">=</span><span class="n">lockin3_X</span><span class="p">,</span> <span class="n">lockin1_amp</span><span class="o">=</span><span class="n">lockin3_amp</span><span class="p">,</span> <span class="n">lockin2_volt</span><span class="o">=</span><span class="n">lockin4_X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lockin_3_4</span><span class="o">.</span><span class="n">GIamp</span><span class="p">(</span><span class="mf">1e7</span><span class="p">)</span> <span class="c1"># Current amplification</span>
+<span class="n">lockin_3_4</span><span class="o">.</span><span class="n">GVamp</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># Voltage amplification</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lockin_3_4</span><span class="o">.</span><span class="n">diff_conductance_fpm</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.04302134575919792
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lockin_3_4</span><span class="o">.</span><span class="n">conductance_tpm</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2021-01-15 12:09:37,307 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/runner/work/MQML-scripts/MQML-scripts/mqml/instrument/conductresist.py:86: UserWarning: The denominator is zero, returning NaN
+  warnings.warn(&#39;The denominator is zero, returning NaN&#39;)
+
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+nan
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lockin_3_4</span><span class="o">.</span><span class="n">resistance_fpm</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+300000.0
+</pre></div></div>
+</div>
+<p>We see that lockin_3_4.conductance_tpm() is returning a warning and ‘nan’. This is because we have the division by zero case in the calculation of the resistance_fpm as the result of the current value of lockin3_amp is zero. This designe is intentional as we want to warn the user about this occurance and return the output value as numpy nan to not stop the experiment.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Examples of using MQML" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
