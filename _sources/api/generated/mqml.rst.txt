@@ -8,7 +8,7 @@ Subpackages
    :maxdepth: 10
 
    mqml.conf
-   mqml.parameter
+   mqml.instrument
    mqml.telemetry
    mqml.tests
 
