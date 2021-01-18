@@ -6,7 +6,7 @@ https://github.com/QCoDeS/MQML-scripts/tree/master/docs/examples and below. To e
 examples you can download them directly from the git repository.
 
 Parameter
----------------
+---------
 
 .. toctree::
     :glob:
