@@ -13,6 +13,7 @@ Documentation
 
    api/index
    examples/index
+   changes/index
 
 
 Indices and tables
