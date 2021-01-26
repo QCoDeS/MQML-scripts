@@ -1,0 +1,19 @@
+Changelog for MQML-scripts 0.1.0
+================================
+
+The January 2021 release of MQML-scripts (first release)
+
+Breaking Changes
+----------------
+
+- No breaking changes
+
+New
+---
+
+- Introducing a virtual instrument conductresist
+
+Under the hood
+--------------
+
+- A test file for conductresist module is added
