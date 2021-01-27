@@ -1,5 +1,8 @@
 # MQML
 
+[![PyPi version](https://badge.fury.io/py/mqml.svg)](https://badge.fury.io/py/mqml)
+[![PyPI python versions](https://img.shields.io/pypi/pyversions/mqml.svg)](https://pypi.python.org/pypi/mqml/)
+
 Packages for measurement and analysis for the Microsoft Quantum Materials Lyngby lab.
 
 # Description
@@ -9,9 +12,10 @@ This repository is built on top of QCoDeS and depends on it.
 
 # Installation
 
-Clone the repository from MQML_scripts github. Navigate to the cloned directory on your PC and install it to the environment you already have created for QCoDeS:
+Installing from Pypi: pip install mqml
+Installing developing version: Clone the repository from [![MQML_scripts github](https://github.com/QCoDeS/MQML-scripts)]. Navigate to the cloned directory on your PC and install it:
 ```bash
-$ pip install .
+$ pip install -e .
 ```
 
 # Usage
