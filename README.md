@@ -13,7 +13,8 @@ This repository is built on top of QCoDeS and depends on it.
 # Installation
 
 Installing from Pypi: pip install mqml
-Installing developing version: Clone the repository from [![MQML_scripts github](https://github.com/QCoDeS/MQML-scripts)]. Navigate to the cloned directory on your PC and install it:
+
+Installing developing version: Clone the repository from https://github.com/QCoDeS/MQML-scripts. Navigate to the cloned directory on your PC and install it:
 ```bash
 $ pip install -e .
 ```
